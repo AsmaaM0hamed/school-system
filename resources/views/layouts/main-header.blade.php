@@ -91,10 +91,11 @@
                         </div>
                     </div>
                 </li>
-                <li class="nav-item dropdown mr-30">
-                    <a class="nav-link nav-pill user-avatar" data-toggle="dropdown" href="#" role="button"
-                        aria-haspopup="true" aria-expanded="false">
-                        <img src="assets/images/profile-avatar.jpg" alt="avatar">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" 
+                       role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="ti-user mr-2"></i>
+                        <span class="d-none d-md-inline">User</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <div class="dropdown-header">
@@ -113,7 +114,13 @@
                                 class="badge badge-info">6</span> </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#"><i class="text-info ti-settings"></i>Settings</a>
-                        <a class="dropdown-item" href="#"><i class="text-danger ti-unlock"></i>Logout</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}" 
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="text-danger ti-unlock"></i> {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </div>
                 </li>
             </ul>
